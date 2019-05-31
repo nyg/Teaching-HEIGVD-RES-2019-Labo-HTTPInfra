@@ -26,7 +26,7 @@ RUN a2ensite 000-* 001-*
 # l'entête Host.
 #
 # Le fichier 001-reverse-proxy.conf spécifie les règles suivantes :
-# 1. toutes les requêtes demandant le chemin /api/students/ seront redirigées
+# 1. toutes les requêtes demandant le chemin /api/addresses/ seront redirigées
 #    vers notre conteneur res/express (IP 172.17.0.3:3000),
 # 2. toutes les requêtes demandant le chemin / seront redirigées vers notre
 #    conteneur res/apache (IP 172.17.0.2:80).
