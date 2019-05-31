@@ -1,5 +1,4 @@
 FROM php:apache
-
 EXPOSE 80
 
 COPY my-site/ /var/www/html/
