@@ -1,4 +1,4 @@
-FROM node:alpine
+FROM node:12.3.1-alpine
 EXPOSE 3000
 
 COPY src/ /opt/app/
