@@ -1,10 +1,13 @@
 FROM php:7.3.5-apache
 EXPOSE 80
 
+COPY setup.sh /usr/local/bin/rp-setup
 COPY conf/ /etc/apache2/
 
 RUN a2enmod proxy proxy_http
 RUN a2ensite 000-* 001-*
+
+CMD [ "rp-setup" ]
 
 # Documentation de la configuration
 #
