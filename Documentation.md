@@ -117,9 +117,9 @@ tcpdump 'port 3000'
 
 ### Load balancing: round-robin vs sticky sessions
 
-### Dynamic cluster management
+Le round-robin pour les serveurs dynamiques a été implémenté avec l'utilisation de la méthode "byrequests" pour le load balancing (c'est en fait celle par défaut). Pour vérifier on peut faire un tcpdump 'port dst 3000' pour voir comment sont distribuées les requêtes.
 
-### Management UI
+Les sticky sessions ont été implémentées avec l'utilisation d'un cookie. Ce cookie est rajouté aux requêtes par reverse proxy et il y rajoute un id de route.
 
 ## Source
 * <https://hub.docker.com/_/php/>

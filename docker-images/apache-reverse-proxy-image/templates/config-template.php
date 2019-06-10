@@ -9,6 +9,7 @@
             echo "BalancerMember http://$member:3000\n";
         }
     ?>
+        ProxySet lbmethod=byrequests
     </Proxy>
 
     <Proxy balancer://static-cluster>
@@ -18,11 +19,15 @@
             echo "BalancerMember http://$member:80\n";
         }
     ?>
+        ProxySet stickysession=ROUTEID
     </Proxy>
 
     ProxyPass        /api/addresses/ balancer://dynamic-cluster/
     ProxyPassReverse /api/addresses/ balancer://dynamic-cluster/
 
-    ProxyPass        / balancer://static-cluster/
-    ProxyPassReverse / balancer://static-cluster/
+    <LocationMatch "/">
+        ProxyPass        balancer://static-cluster/
+        ProxyPassReverse balancer://static-cluster/
+        Header add Set-Cookie "ROUTEID=.%{BALANCER_WORKER_ROUTE}e; path=/" env=BALANCER_ROUTE_CHANGED
+    </LocationMatch>
 </VirtualHost>
